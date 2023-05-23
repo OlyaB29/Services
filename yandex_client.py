@@ -28,7 +28,7 @@ link=y.upload("Тестовый файл.txt", "/test-dir/Тестовый фа�
 y.download("/test-dir/Тестовый файл.txt", "downloaded.txt")
 #
 # Получаем ссылку на сам файл
-file_link = requests.get(link, headers={'Authorization': 'OAuth ' + token}).json()['file']
+file_link = requests.get(link, headers={'Authorization': 'OAuth ' + config.TOKEN}).json()['file']
 # Выводим содержимое файла
 file_content=requests.get(file_link).text
 print(file_content)
