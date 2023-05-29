@@ -1,4 +1,5 @@
 import yadisk
+from yadisk import settings
 import requests
 import config
 
@@ -33,4 +34,16 @@ file_link = requests.get(link, headers={'Authorization': 'OAuth ' + config.TOKEN
 file_content=requests.get(file_link).text
 print(file_content)
 
+# Проверяем, существует ли директория
+print(y.exists("/tree/branch/little_branch"))
+# Получаем список ресурсов на диске
+print(list(y.get_files()))
+# Переименовываем файл
+print(y.rename("/test-dir/Тестовый файл.txt", "8_Тестовый файл.txt"))
+# Получаем ссылку для скачивания файла
+print(y.get_download_link("/test-dir/8_Тестовый файл.txt"))
+
+print(settings.DEFAULT_TIMEOUT)
+print(settings.DEFAULT_N_RETRIES)
+print(settings.DEFAULT_RETRY_INTERVAL)
 
