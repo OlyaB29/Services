@@ -34,7 +34,7 @@ def create_access_key(secret_key, file):
     expires = int(time()) + 60
 
     # путь к файлу в хранилище
-    path = "/v1/SEL_{}/my_container/{}".format(ACCOUNT_ID, file)
+    path = "/v1/SEL_{}/my_container{}".format(ACCOUNT_ID, file)
 
     # секретный ключ контейнера
     link_secret_key = str.encode(secret_key)
@@ -57,4 +57,4 @@ sig, expires = create_access_key(secret_key, "/test_dir/new_folder/text.txt")
 delete_file = requests.delete(url + "/test_dir/test_file.txt", headers={'X-Auth-Token': token})
 print(delete_file.headers)
 
-
+# http://911905.selcdn.ru/overschool/test1.txt?temp_url_sig=75f7b1f0d09fb1de14be42b0dec470a9bd8e3242&temp_url_expires=1687876100
