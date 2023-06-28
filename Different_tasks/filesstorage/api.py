@@ -1,7 +1,7 @@
 from rest_framework.response import Response
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 from .models import MyFiles
-from .serializers import FileCreateSerializer, FileGetSerializer
+from .serializers import FileCreateSerializer, FileGetSerializer, SelectelFileGetSerializer
 from .config import TOKEN
 from .selectel_config import URL, AUTH_TOKEN
 import yadisk
@@ -24,9 +24,10 @@ class MyFilesViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
+
 class SelectelFilesViewSet(viewsets.ModelViewSet):
     queryset = MyFiles.objects.all()
-    serializer_class = FileCreateSerializer
+    serializer_class = SelectelFileGetSerializer
 
     def post(self, request):
         serializer = FileCreateSerializer(data=request.data)

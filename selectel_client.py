@@ -25,7 +25,7 @@ with open("Тестовый файл.txt", "rb") as new_file:
 
 # Установка секретного ключа для контейнера, чтобы затем, используя его в ссылке, иметь доступ к файлу
 secret_key = "container_key"
-set_key = requests.post(url, headers={'X-Auth-Token': 'a7f640c10e821ad7b5c9d22fff98db8c', "X-Container-Meta-Temp-URL-Key": secret_key})
+set_key = requests.post(url, headers={'X-Auth-Token': token, "X-Container-Meta-Temp-URL-Key": secret_key})
 
 # Функция для создания ключа доступа, используемого в ссылке к файлу
 def create_access_key(secret_key, file):
@@ -51,9 +51,10 @@ def create_access_key(secret_key, file):
 sig, expires = create_access_key(secret_key, "/test_dir/new_folder/text.txt")
 
 # После этого файл будет доступен по ссылке:
-# https://api.selcdn.ru/v1/SEL_{}/my_container//test_dir/new_folder/text.txt?temp_url_sig={}&temp_url_expires={}".format(ACCOUNT_ID, sig, expires)
+# https://api.selcdn.ru/v1/SEL_{}/my_container/test_dir/new_folder/text.txt?temp_url_sig={}&temp_url_expires={}".format(ACCOUNT_ID, sig, expires)
 
 # Удаление файла
 delete_file = requests.delete(url + "/test_dir/test_file.txt", headers={'X-Auth-Token': token})
 print(delete_file.headers)
+
 
