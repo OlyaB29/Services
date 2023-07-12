@@ -34,7 +34,7 @@ def create_access_key(secret_key, file):
     expires = int(time()) + 60
 
     # путь к файлу в хранилище
-    path = "/v1/SEL_{}/my_container{}".format(ACCOUNT_ID, file)
+    path = "/v1/SEL_{}/overschool{}".format(ACCOUNT_ID, file)
 
     # секретный ключ контейнера
     link_secret_key = str.encode(secret_key)
